@@ -10,7 +10,13 @@ function Toggle({children}) {
 
   // React.Children is basically [].map() but accounts for all the posibilities on React components
   return React.Children.map(children, child => {
+    // account for normal html elements
+    // Could restrict allowed types here instead (typescript or some .type logic)
+    if (typeof child.type === 'string') {
+      return child
+    }
     const newChild = React.cloneElement(child, {on, toggle})
+    // console.log(newChild.type)
     return newChild
   })
 }
@@ -23,6 +29,9 @@ function App() {
   return (
     <div>
       <Toggle>
+        <div>
+          <span>Toggling</span>
+        </div>
         <ToggleOn>The button is on</ToggleOn>
         <ToggleOff>The button is off</ToggleOff>
         <ToggleButton />
