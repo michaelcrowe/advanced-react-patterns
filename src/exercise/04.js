@@ -8,10 +8,16 @@ function useToggle() {
   const [on, setOn] = React.useState(false)
   const toggle = () => setOn(!on)
 
-  // 🐨 Add a property called `togglerProps`. It should be an object that has
-  // `aria-pressed` and `onClick` properties.
-  // 💰 {'aria-pressed': on, onClick: toggle}
-  return {on, toggle}
+  // togglerProps are a collection of props to be used in the most common use case
+  // for our component, whilst still allowing for extension.
+  return {
+    on,
+    toggle,
+    togglerProps: {
+      'aria-pressed': on,
+      onClick: toggle,
+    },
+  }
 }
 
 function App() {
