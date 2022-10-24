@@ -17,7 +17,7 @@ function useToggle() {
   const [on, setOn] = React.useState(false)
   const toggle = () => setOn(!on)
 
-  // Prop getter pattern
+  // Prop getter pattern - we are composing our props and passed-in props together.
   function getTogglerProps({onClick, ...props} = {}) {
     return {
       'aria-pressed': on,
